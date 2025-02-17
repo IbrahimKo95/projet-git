@@ -1,23 +1,29 @@
-name: Linter
+name: ESLint Check
 
 on:
   push:
-    branches: ["**"]  
+    branches:
+      - "**"  
   pull_request:
-    branches: ["**"] 
+    branches:
+      - "**"  
 
 jobs:
   lint:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: install 
+      - name: Install 
         run: npm install  
-      - name: run eslint
-        run: npx eslint . --max-warnings=0
+
+      - name: Run
+        run: npx eslint . --max-warnings=0 
 
